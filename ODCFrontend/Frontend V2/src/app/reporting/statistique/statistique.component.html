@@ -1,0 +1,72 @@
+<!-- <p-table [value]="listes" responsiveLayout="scroll">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>libelle</th>
+            <th>date_debut</th>
+            <th>date_fin</th>
+            <th>etat</th>
+            <th>type</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+        <tr>
+            <td>{{product.libelle}}</td>
+            <td>{{product.date_debut}}</td>
+            <td>{{product.date_fin}}</td>
+            <td>{{product.etat}}</td>
+            <td>{{product.type}}</td>
+        </tr>
+    </ng-template>
+</p-table> -->
+
+
+
+<div class="card">
+    <h5>Filter Row</h5>
+    <p>Filters are displayed inline within a separate row.</p>
+    <p-table #dt2 [value]="listes" dataKey="id"
+        [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading"
+        [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [globalFilterFields]="['name','country.name','representative.name','status']">
+        <ng-template pTemplate="caption">
+            <!-- <div class="p-d-flex">
+                <span class="p-input-icon-left p-ml-auto">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt2.filterGlobal($event.target.value, 'contains')" placeholder="Search keyword" />
+                </span>
+            </div> -->
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th>libelle</th>
+                <th>date_debut</th>
+                <th>date_fin</th>
+                <th>etat</th>
+                <th>type</th>
+            </tr>
+            <tr>
+                <th>
+                    <p-columnFilter type="text" field="name"></p-columnFilter>
+                </th>
+                <th>
+                    <p-columnFilter type="text" field="country.name"></p-columnFilter>
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-listes>
+            <tr>
+                <td>
+                    {{listes.libelle}}
+                </td>
+                <td>
+                    {{listes.date_debut}}
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="5">No customers found.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
